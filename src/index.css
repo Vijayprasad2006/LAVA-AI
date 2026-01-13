@@ -1,0 +1,696 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gpt-sidebar: #000000;
+  --gpt-main: #000000;
+  --gpt-user-bubble: #000000;
+  --gpt-assistant-bubble: #111111;
+  --gpt-input: #1e1e1e;
+  --gpt-text-primary: #FFFFFF;
+  --gpt-text-secondary: #9ca3af;
+  --gpt-border: rgba(255, 255, 255, 0.15);
+
+  font-family: Söhne, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--gpt-main);
+  color: var(--gpt-text-primary);
+}
+
+.dark body {
+  background-color: var(--gpt-main);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Scrollbar styles to match ChatGPT */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #565869;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8e8ea0;
+}
+
+/* Curly font for Report Helper */
+.report-helper-text {
+  font-family: 'Dancing Script', 'Great Vibes', 'Pacifico', cursive;
+  font-weight: 600;
+  font-style: italic;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.5px;
+}
+
+/* Floating Animations */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes floatSlow {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes floatFast {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes floatCard {
+
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+
+  50% {
+    transform: translateY(-8px) scale(1.01);
+  }
+}
+
+@keyframes floatButton1 {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes floatButton2 {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes floatButton3 {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulseGlow {
+
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes roll-dice {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  16.66% {
+    transform: rotate(60deg);
+  }
+
+  33.33% {
+    transform: rotate(120deg);
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+
+  66.66% {
+    transform: rotate(240deg);
+  }
+
+  83.33% {
+    transform: rotate(300deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Hide all dice faces by default */
+.dice-face {
+  opacity: 0;
+}
+
+/* Show dice face 1 at 0-16.66% */
+@keyframes show-face-1 {
+
+  0%,
+  16.66% {
+    opacity: 1;
+  }
+
+  16.67%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Show dice face 2 at 16.67-33.33% */
+@keyframes show-face-2 {
+
+  0%,
+  16.66% {
+    opacity: 0;
+  }
+
+  16.67%,
+  33.33% {
+    opacity: 1;
+  }
+
+  33.34%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Show dice face 3 at 33.34-50% */
+@keyframes show-face-3 {
+
+  0%,
+  33.33% {
+    opacity: 0;
+  }
+
+  33.34%,
+  50% {
+    opacity: 1;
+  }
+
+  50.01%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Show dice face 4 at 50.01-66.66% */
+@keyframes show-face-4 {
+
+  0%,
+  50% {
+    opacity: 0;
+  }
+
+  50.01%,
+  66.66% {
+    opacity: 1;
+  }
+
+  66.67%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Show dice face 5 at 66.67-83.33% */
+@keyframes show-face-5 {
+
+  0%,
+  66.66% {
+    opacity: 0;
+  }
+
+  66.67%,
+  83.33% {
+    opacity: 1;
+  }
+
+  83.34%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Show dice face 6 at 83.34-100% */
+@keyframes show-face-6 {
+
+  0%,
+  83.33% {
+    opacity: 0;
+  }
+
+  83.34%,
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: floatSlow 8s ease-in-out infinite;
+}
+
+.animate-float-fast {
+  animation: floatFast 4s ease-in-out infinite;
+}
+
+.animate-float-card {
+  animation: floatCard 5s ease-in-out infinite;
+}
+
+.animate-float-button-1 {
+  animation: floatButton1 5s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.animate-float-button-2 {
+  animation: floatButton2 5.5s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.animate-float-button-3 {
+  animation: floatButton3 6s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+/* Swing animation for hanging mascot */
+@keyframes swing {
+  0% {
+    transform: rotate(-6deg);
+  }
+
+  50% {
+    transform: rotate(6deg);
+  }
+
+  100% {
+    transform: rotate(-6deg);
+  }
+}
+
+.animate-swing {
+  display: inline-block;
+  transform-origin: 50% 0%;
+  animation: swing 2.4s ease-in-out infinite;
+}
+
+/* helper for the web line to have origin anchored */
+.animate-swing-origin {
+  transform-origin: 50% 0%;
+  animation: swing 2.4s ease-in-out infinite;
+}
+
+/* Descend animation: spider travels down (to near bottom of viewport) and returns */
+@keyframes descend {
+  0% {
+    transform: translateY(0);
+  }
+
+  45% {
+    transform: translateY(calc(100vh - 8rem));
+  }
+
+  55% {
+    transform: translateY(calc(100vh - 8rem));
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Web extend animation: increase the web line height to reach bottom and retract */
+@keyframes webExtend {
+  0% {
+    height: 4rem;
+  }
+
+  45% {
+    height: calc(100vh - 4rem);
+  }
+
+  55% {
+    height: calc(100vh - 4rem);
+  }
+
+  100% {
+    height: 4rem;
+  }
+}
+
+.animate-descend {
+  animation: descend 6.5s ease-in-out infinite;
+}
+
+.web-extend {
+  height: 4rem;
+  /* base */
+  transition: height 0.2s linear;
+  animation: webExtend 6.5s ease-in-out infinite;
+}
+
+/* Flying hero animations */
+@keyframes flyAcross {
+  0% {
+    transform: translateX(0) translateY(0) scale(1);
+  }
+
+  25% {
+    transform: translateX(-10px) translateY(-6px) scale(1.02);
+  }
+
+  50% {
+    transform: translateX(-20px) translateY(-10px) scale(1);
+  }
+
+  75% {
+    transform: translateX(-10px) translateY(-6px) scale(1.01);
+  }
+
+  100% {
+    transform: translateX(0) translateY(0) scale(1);
+  }
+}
+
+.animate-fly {
+  animation: flyAcross 3.2s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+
+.animate-roll-dice {
+  animation: roll-dice 6s linear infinite;
+  transform-origin: center center;
+}
+
+.dice-face-1 {
+  animation: show-face-1 6s linear infinite;
+}
+
+.dice-face-2 {
+  animation: show-face-2 6s linear infinite;
+}
+
+.dice-face-3 {
+  animation: show-face-3 6s linear infinite;
+}
+
+.dice-face-4 {
+  animation: show-face-4 6s linear infinite;
+}
+
+.dice-face-6 {
+  animation: show-face-6 6s linear infinite;
+}
+
+/* --- EXTRAORDINARY UI ANIMATIONS --- */
+
+@keyframes meshGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes float-preview {
+
+  0%,
+  100% {
+    transform: translateY(0) rotateX(2deg) rotateY(-2deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotateX(4deg) rotateY(-4deg);
+  }
+}
+
+@keyframes glow-pulse {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 69, 0, 0.2);
+  }
+
+  50% {
+    box-shadow: 0 0 20px rgba(255, 69, 0, 0.6);
+  }
+
+  100% {
+    box-shadow: 0 0 5px rgba(255, 69, 0, 0.2);
+  }
+}
+
+.animate-mesh {
+  background-size: 200% 200%;
+  animation: meshGradient 15s ease infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.animate-float-preview {
+  animation: float-preview 8s ease-in-out infinite;
+}
+
+.shadow-glow {
+  box-shadow: 0 0 30px -5px rgba(255, 69, 0, 0.3);
+}
+
+.glass-panel {
+  background: rgba(20, 20, 20, 0.6);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.input-highlight:focus-within {
+  box-shadow: 0 0 0 2px rgba(255, 69, 0, 0.5);
+  border-color: #ff4500;
+}
+
+/* --- MARVEL / IRON MAN THEME ANIMATIONS --- */
+
+/* Holographic Scanning Line */
+@keyframes scan-line {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(500%);
+    opacity: 0;
+  }
+}
+
+.animate-scan {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-scan::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to bottom, transparent, rgba(0, 255, 255, 0.2), transparent);
+  animation: scan-line 3s linear infinite;
+  pointer-events: none;
+}
+
+/* Arc Reactor Pulse */
+@keyframes arc-pulse {
+  0% {
+    box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff inset;
+  }
+
+  50% {
+    box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff inset;
+  }
+
+  100% {
+    box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff inset;
+  }
+}
+
+.animate-arc-pulse {
+  animation: arc-pulse 2s ease-in-out infinite;
+}
+
+/* Tech Flicker (Startup effect) */
+@keyframes tech-flicker {
+  0% {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  15% {
+    opacity: 0.1;
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  30% {
+    opacity: 0.5;
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-tech-flicker {
+  animation: tech-flicker 0.8s ease-out forwards;
+}
+
+/* Hexagon Clip Path for "Tech" buttons */
+.clip-hex {
+  clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+}
+
+.clip-tech-border {
+  --b: 2px;
+  /* border thickness */
+  --c: #00ffff;
+  /* border color */
+  --w: 20px;
+  /* corner width */
+
+  border: var(--b) solid transparent;
+  background:
+    linear-gradient(135deg, var(--c) var(--w), transparent var(--w)) top left,
+    linear-gradient(-135deg, var(--c) var(--w), transparent var(--w)) bottom right;
+  background-size: 50% 50%;
+  background-repeat: no-repeat;
+  background-origin: border-box;
+}
+
+/* Cyberpunk/HUD Grid Background */
+.bg-hud-grid {
+  background-image:
+    linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
